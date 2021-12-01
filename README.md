@@ -1,1 +1,0 @@
-# hizkiahabeahan.github.io
