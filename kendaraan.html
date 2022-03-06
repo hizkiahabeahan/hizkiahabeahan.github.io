@@ -44,7 +44,7 @@
 
         <div class="container">
             <div class="py-5 text-center">
-              <h2>Data Pelanggan</h2>
+              <h2>Kendaraan</h2>
             </div>
       
             <div class="col-md-12">
@@ -53,23 +53,23 @@
               <table class="table table-striped">
                   <tr>
                       <th>ID</th>
-                      <th>Nama</th>
-                      <th>Alamat</th>
-                      <th>Nomor HP</th>
-                      <th>Foto KTP</th>
-                      <th>Jenis Kelamin</th>
+                      <th>Jenis Kendaraan</th>
+                      <th>Merk</th>
+                      <th>Warna</th>
+                      <th>Plat</th>
+                      <th>Tahun</th>
                       <th>Edit</th>
                       <th>Delete</th>
                   </tr>
-                  <tr v-for="user in users">
-                      <td>{{ user.id }}</td>
-                      <td>{{ user.nama }}</td>
-                      <td>{{ user.alamat }}</td>
-                      <td>{{ user.nomorHp }}</td>
-                      <td>{{ user.fotoKtp }}</td>
-                      <td>{{ user.jenisKelamin }}</td>
-                      <td><button class="btn btn-md btn-warning" v-on:click="getEdit(user)">Edit</button></td>
-                      <td><button class="btn btn-danger" v-on:click="getDelete(user)">Delete</button></td>
+                  <tr v-for="kendaraan in kendaraans">
+                      <td>{{ kendaraan.id }}</td>
+                      <td>{{ kendaraan.jenisKendaraan }}</td>
+                      <td>{{ kendaraan.merk }}</td>
+                      <td>{{ kendaraan.warna }}</td>
+                      <td>{{ kendaraan.plat }}</td>
+                      <td>{{ kendaraan.tahun }}</td>
+                      <td><button class="btn btn-md btn-warning" v-on:click="getEdit(kendaraan)">Edit</button></td>
+                      <td><button class="btn btn-danger" v-on:click="getDelete(kendaraan)">Delete</button></td>
                   </li>
               </table>
 
@@ -78,61 +78,56 @@
               </div>
               
           
-              <h4 class="mb-3">Login</h4>
+              <h4 class="mb-3">Informasi kendaraan</h4>
                 <div class="row">
                   <div class="mb-3">
-                      <label for="nama">Nama Lengkap</label>
-                        <input v-model="nama" type="text" class="form-control" id="nama" placeholder="Nama lengkap" required>
+                      <label for="jenisKendaraan">Jenis Kendaraan</label>
+                        <input v-model="jenisKendaraan" type="text" class="form-control" id="jenisKendaraan" placeholder="Masukan jenis kendaraan " required>
                         <div class="invalid-feedback" style="width: 100%;">
-                          Your username is required.
+                          Wajib memasukan jenis kendaraan.
                         </div>
                     </div>
 
                   <div class="col-sm-12">
-                    <label for="alamat">Alamat</label>
-                    <input v-model="alamat" type="text" class="form-control" id="alamat" placeholder="Masukan alamat lengkap" required>
+                    <label for="merk">Merk</label>
+                    <input v-model="merk" type="text" class="form-control" id="merk" placeholder="Masukan merk kendaraan" required>
                     <div class="invalid-feedback" style="width: 100%;">
-                      Valid alamat is required.
+                      Wajib memasukan merk kendaraan.
                     </div>
                   </div>
                 
     
                 <div class="mb-3">
-                  <label for="nomorHp">Nomor HP</label>
-                  <input v-model="nomorHp" type="number" class="form-control" id="nomorHp" placeholder="+62 xxxxxxxxx" required>
+                  <label for="warna">Warna</label>
+                  <input v-model="warna" type="text" class="form-control" id="warna" placeholder="Masukan warna kendaraan" required>
                   <div class="invalid-feedback" style="width: 100%;">
-                    Please enter a valid phone number.
+                    Wajib memasukan warna kendaraan.
                   </div>
                 </div>
 
                 <div class="mb-3">
-                    <label for="fotoKtp">Foto KTP</label>
-                    <input v-model="fotoKtp" type="url" class="form-control" id="fotoKtp" placeholder="masukan foto ktp berbentuk link url" required>
-                    <div class="invalid-feedback" style="width: 100%;">
-                      Valid foto ktp is required.
-                    </div>
-                </div>
-                
-                <div class="mb-3">
-
-                  <label for="jenisKelamin">Pria</label>
-                  <input v-model="jenisKelamin" type="radio" id="pria" value="pria"  required>
-
-                  <label for="jenisKelamin">Wanita</label>
-                  <input v-model="jenisKelamin" type="radio" id="wanita" value="wanita"  required>
-
+                  <label for="plat">Plat</label>
+                  <input v-model="plat" type="text" class="form-control" id="plat" placeholder="Masukan plat kendaraan" required>
                   <div class="invalid-feedback" style="width: 100%;">
-                    Valid jenis kelamin is required.
+                    Wajib memasukan plat kendaraan.
                   </div>
-              </div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="tahun">Tahun</label>
+                  <input v-model="tahun" type="date" class="form-control" id="tahun" placeholder="Masukan tahun kendaraan" required>
+                  <div class="invalid-feedback" style="width: 100%;">
+                    Wajib memasukan tahun kendaraan.
+                  </div>
+                </div>
 
               </div>
           </div>
               
                 <hr class="mb-4">
-                <button v-if="!editMode && !deleteMode" v-on:click="createUser" class="btn btn-primary btn-lg btn-block" type="submit">Submit Data</button>
-                <button v-if="editMode" v-on:click="updateUser" class="btn btn-warning btn-lg btn-block" type="submit">Update Data</button>
-                <button v-if="deleteMode" v-on:click="deleteUser" class="btn btn-danger btn-lg btn-block" type="submit">Delete Data</button>
+                <button v-if="!editMode && !deleteMode" v-on:click="createKendaraan" class="btn btn-primary btn-lg btn-block" type="submit">Submit Data</button>
+                <button v-if="editMode" v-on:click="updateKendaraan" class="btn btn-warning btn-lg btn-block" type="submit">Update Data</button>
+                <button v-if="deleteMode" v-on:click="deleteKendaraan" class="btn btn-danger btn-lg btn-block" type="submit">Delete Data</button>
                 
               </form>
             </div>
@@ -152,8 +147,8 @@
             </footer>
         </div>
 
-  </div>
 
+  </div>
   
   <!-- Axios -->
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -164,41 +159,41 @@
           data: {
               errors: [],
               message: null,
-              users:[],
-              userIdEdit: null,
-              userIdDelete: null,
+              kendaraans:[],
+              kendaraanIdEdit: null,
+              kendaraanIdDelete: null,
               editMode: false,
               deleteMode: false,
-              nama: '',
-              alamat: '',
-              nomorHp: '',
-              fotoKtp: '',
-              jenisKelamin: '',
+              jenisKendaraan: '',
+              merk: '',
+              warna: '',
+              plat: '',
+              tahun: '',
           },
           mounted: function() {
-              this.getUser();
+              this.getKendaraan();
           },
           methods: {
-              getUser() {
-                  axios.get('https://621cc497768a4e1020b4860b.mockapi.io/users')
+              getKendaraan() {
+                  axios.get('https://621cc497768a4e1020b4860b.mockapi.io/kendaraan')
                       .then(response => {
-                          this.users = response.data;
+                          this.kendaraans = response.data;
                           console.log(response);
                       })
                       .catch(error => {
                           console.log(error);
                       });
               },
-              createUser: function(){
-                  axios.post('https://621cc497768a4e1020b4860b.mockapi.io/users', {
-                      nama: this.nama,
-                      alamat: this.alamat,
-                      nomorHp: this.nomorHp,
-                      fotoKtp: this.fotoKtp,
-                      jenisKelamin: this.jenisKelamin,
+              createKendaraan: function(){
+                  axios.post('https://621cc497768a4e1020b4860b.mockapi.io/kendaraan', {
+                      jenisKendaraan: this.jenisKendaraan,
+                      merk: this.merk,
+                      warna: this.warna,
+                      plat: this.plat,
+                      tahun: this.tahun,
                   })
                   .then(response => {
-                          this.getUser();
+                          this.getKendaraan();
                           this.message = "Your data has been submitted";
                           console.log(response);
                   })
@@ -210,46 +205,47 @@
                   this.message = null;
                   this.editMode = false;
                   this.deleteMode = false;
-                  this.userIdEdit = null;
-                  this.nama = null;
-                  this.alamat = null;
-                  this.nomorHp = null;
-                  this.fotoKtp = null;
-                  this.jenisKelamin = null;
+                  this.kendaraanIdEdit = null;
+                  this.jenisKendaraan = null;
+                  this.merk = null;
+                  this.warna = null;
+                  this.plat = null;
+                  this.tahun = null;
               },
-              getEdit: function (user) {
+              getEdit: function (kendaraan) {
                   this.message = null;
                   this.editMode = true;
                   this.deleteMode = false;
-                  this.userIdEdit = user.id;
-                  this.nama = user.nama;
-                  this.alamat = user.alamat;
-                  this.nomorHp = user.nomorHp;
-                  this.fotoKtp = user.fotoKtp;
-                  this.jenisKelamin = user.jenisKelamin;
+                  this.kendaraanIdEdit = kendaraan.id;
+                  this.jenisKendaraan = kendaraan.jenisKendaraan;
+                  this.merk = kendaraan.merk;
+                  this.warna = kendaraan.warna;
+                  this.plat = kendaraan.plat;
+                  this.tahun = kendaraan.tahun;
               },
-              getDelete: function (user) {
+              getDelete: function (kendaraan) {
                   this.message = null;
                   this.deleteMode = true;
                   this.editMode = false;
-                  this.userIdDelete = user.id;
-                  this.nama = user.nama;
-                  this.alamat = user.alamat;
-                  this.nomorHp = user.nomorHp;
-                  this.fotoKtp = user.fotoKtp;
+                  this.kendaraanIdDelete = kendaraan.id;
+                  this.jenisKendaraan = kendaraan.jenisKendaraan;
+                  this.merk = kendaraan.merk;
+                  this.warna = kendaraan.warna;
+                  this.plat = kendaraan.plat;
+                  this.tahun = kendaraan.tahun;
               },
-              updateUser: function () {
-                  axios.put(`https://621cc497768a4e1020b4860b.mockapi.io/users/${this.userIdEdit}`, {
-                          nama: this.nama,
-                          alamat: this.alamat,
-                          nomorHp: this.nomorHp,
-                          fotoKtp: this.fotoKtp,
-                          jenisKelamin: this.jenisKelamin,
+              updateKendaraan: function () {
+                  axios.put(`https://621cc497768a4e1020b4860b.mockapi.io/kendaraan/${this.kendaraanIdEdit}`, {
+                          jenisKendaraan: this.jenisKendaraan,
+                          merk: this.merk,
+                          warna: this.warna,
+                          plat: this.plat,
+                          tahun: this.tahun,
                       })
                       .then(res => {
                           // handle success
                           this.message = "Your data has been updated";
-                          this.getUser();
+                          this.getKendaraan();
                       })
                       .catch(err => {
                           // handle error
@@ -257,12 +253,12 @@
                       })
               },
               // Delete User
-              deleteUser: function () {
-                  axios.delete(`https://621cc497768a4e1020b4860b.mockapi.io/users/${this.userIdDelete}`)
+              deleteKendaraan: function () {
+                  axios.delete(`https://621cc497768a4e1020b4860b.mockapi.io/kendaraan/${this.kendaraanIdDelete}`)
                       .then(res => {
                           // handle success
                           this.message = "Your data has been deleted";
-                          this.getUser();
+                          this.getKendaraan();
                       })
                       .catch(err => {
                           // handle error
